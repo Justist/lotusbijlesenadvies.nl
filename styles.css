@@ -1,16 +1,43 @@
-/* Base: light theme */
+:root {
+   --bg: #faf5f6;
+   --surface: #ffffff;
+   --pink-soft: #f3dfe6;
+   --pink-mid: #e3b9c8;
+   --grey-soft: #efeaec;
+   --border: #e7d9de;
+   --text: #3b3338;
+   --muted: #6e636a;
+   --accent: #a85a75;
+   --accent-dark: #8f4560;
+   --radius: 1rem;
+   --shadow: 0 10px 30px rgba(168, 90, 117, 0.10);
+}
+
+/* Base */
 
 body {
    margin: 0;
    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-   background: #f7f8fa;
-   color: #2a2a2a;
-   line-height: 1.65;
+   background: var(--bg);
+   color: var(--text);
+   line-height: 1.7;
 }
 
 a {
-   color: #2a2a2a;
+   color: var(--accent-dark);
    text-decoration: none;
+}
+
+#app p a,
+#app li a {
+   text-decoration: underline;
+   text-decoration-color: var(--pink-mid);
+   text-underline-offset: 3px;
+}
+
+:focus-visible {
+   outline: 3px solid var(--pink-mid);
+   outline-offset: 2px;
 }
 
 /* Header & navigation */
@@ -22,14 +49,14 @@ a {
    justify-content: space-between;
    gap: 1rem;
    padding: 1.25rem 2rem;
-   background: #ffffff;
-   border-bottom: 1px solid #eaeaea;
+   background: linear-gradient(135deg, var(--pink-soft), var(--grey-soft));
+   border-bottom: 1px solid var(--border);
 }
 
 .site-header h1 {
    font-size: 1.4rem;
    margin: 0;
-   color: #1a1a1a;
+   color: var(--text);
 }
 
 .Lotus {
@@ -48,21 +75,23 @@ a {
 .nav-link {
    display: inline-block;
    padding: 0.6rem 1rem;
-   border-radius: 0.5rem;
+   border-radius: 999px;
    font-size: 0.95rem;
-   color: #444;
+   color: var(--text);
    cursor: pointer;
    transition: background 0.2s ease, color 0.2s ease;
 }
 
 .nav-link:hover {
-   background: #f0f2f5;
-   color: #0a7d5c;
+   background: rgba(255, 255, 255, 0.7);
+   color: var(--accent-dark);
 }
 
 .nav-link--active {
-   color: #0a7d5c;
+   background: var(--surface);
+   color: var(--accent-dark);
    font-weight: 600;
+   box-shadow: 0 2px 8px rgba(168, 90, 117, 0.15);
 }
 
 /* Dropdown (details/summary) */
@@ -82,11 +111,12 @@ a {
 .nav-dropdown summary::after {
    content: " ▾";
    font-size: 0.8em;
-   color: #999;
+   color: var(--accent);
 }
 
 .nav-dropdown--active > summary {
-   color: #0a7d5c;
+   background: var(--surface);
+   color: var(--accent-dark);
    font-weight: 600;
 }
 
@@ -94,11 +124,11 @@ a {
    position: absolute;
    top: calc(100% + 0.5rem);
    left: 0;
-   min-width: 260px;
-   background: #ffffff;
-   border: 1px solid #eaeaea;
-   border-radius: 0.75rem;
-   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+   min-width: 280px;
+   background: var(--surface);
+   border: 1px solid var(--border);
+   border-radius: var(--radius);
+   box-shadow: var(--shadow);
    padding: 0.5rem;
    display: flex;
    flex-direction: column;
@@ -107,23 +137,24 @@ a {
 }
 
 .dropdown-link {
-   padding: 0.6rem 0.75rem;
-   border-radius: 0.5rem;
+   padding: 0.65rem 0.9rem;
+   border-radius: 0.6rem;
    font-size: 0.92rem;
-   color: #444;
+   color: var(--text);
 }
 
 .dropdown-link:hover {
-   background: #f0f2f5;
-   color: #0a7d5c;
+   background: var(--pink-soft);
+   color: var(--accent-dark);
 }
 
 .dropdown-link--active {
-   color: #0a7d5c;
+   background: var(--grey-soft);
+   color: var(--accent-dark);
    font-weight: 600;
 }
 
-/* Main content: spacious layout */
+/* Main content */
 
 #app {
    max-width: 1080px;
@@ -142,7 +173,27 @@ a {
    background: transparent;
 }
 
-/* Two-column layout: text + sidebar box, like the reference screenshot */
+h1, h2, h3 {
+   color: var(--text);
+   line-height: 1.25;
+}
+
+h2 {
+   margin: 2rem 0 0.75rem;
+   font-size: 1.5rem;
+}
+
+h2::after {
+   content: "";
+   display: block;
+   width: 48px;
+   height: 3px;
+   margin-top: 0.5rem;
+   border-radius: 3px;
+   background: var(--pink-mid);
+}
+
+/* Two-column layout */
 
 .content-grid {
    display: grid;
@@ -151,51 +202,212 @@ a {
    align-items: start;
 }
 
-.content-grid h1 {
+.content-grid h1,
+#app h1 {
    font-size: clamp(2rem, 4vw, 2.75rem);
    margin: 0 0 1rem;
-   color: #1a1a1a;
 }
 
-.content-grid p {
+.content-grid p,
+#app p {
    margin: 0 0 1.25rem;
-   color: #444;
+   color: var(--text);
 }
 
-/* Sidebar "why choose" box */
+/* Lists in page content: readable without extra classes */
 
-.sidebar-box {
-   background: #ffffff;
-   border: 1px solid #eaeaea;
-   border-radius: 1rem;
-   padding: 1.75rem;
-}
-
-.sidebar-box h3 {
-   margin: 0 0 1rem;
-   font-size: 1.15rem;
-   color: #1a1a1a;
-}
-
-.sidebar-box ul {
+#app ul,
+#app ol {
    list-style: none;
-   padding: 0;
    margin: 0 0 1.5rem;
+   padding: 0;
    display: flex;
    flex-direction: column;
    gap: 0.6rem;
 }
 
-.sidebar-box li {
-   display: flex;
-   gap: 0.5rem;
-   font-size: 0.95rem;
-   color: #333;
+#app ul > li,
+#app ol > li {
+   position: relative;
+   padding: 0.75rem 1rem 0.75rem 3rem;
+   background: var(--surface);
+   border: 1px solid var(--border);
+   border-radius: 0.75rem;
+   line-height: 1.55;
 }
 
-.sidebar-box li::before {
-   content: "•";
-   color: #0a7d5c;
+#app ul > li::before {
+   content: "";
+   position: absolute;
+   left: 1.15rem;
+   top: 1.2rem;
+   width: 0.6rem;
+   height: 0.6rem;
+   border-radius: 0.15rem;
+   background: var(--accent);
+   transform: rotate(45deg);
+}
+
+#app ol {
+   counter-reset: step;
+}
+
+#app ol > li {
+   counter-increment: step;
+}
+
+#app ol > li::before {
+   content: counter(step);
+   position: absolute;
+   left: 0.8rem;
+   top: 0.7rem;
+   width: 1.7rem;
+   height: 1.7rem;
+   display: grid;
+   place-items: center;
+   border-radius: 50%;
+   background: var(--accent);
+   color: #fff;
+   font-size: 0.85rem;
+   font-weight: 700;
+}
+
+/* Nested lists */
+
+#app li ul,
+#app li ol {
+   margin: 0.6rem 0 0;
+   gap: 0.35rem;
+}
+
+#app li li {
+   background: var(--bg);
+   border-color: transparent;
+   padding: 0.4rem 0.75rem 0.4rem 2.2rem;
+   font-size: 0.95rem;
+}
+
+#app li li::before {
+   left: 0.8rem;
+   top: 0.75rem;
+   width: 0.45rem;
+   height: 0.45rem;
+   box-shadow: none;
+}
+
+/* Compact variant: <ul class="compact"> for short items */
+
+#app ul.compact {
+   flex-direction: row;
+   flex-wrap: wrap;
+   gap: 0.5rem;
+}
+
+#app ul.compact > li {
+   padding: 0.4rem 1rem;
+   border-radius: 999px;
+   background: var(--pink-soft);
+   border-color: transparent;
+}
+
+#app ul.compact > li::before {
+   display: none;
+}
+
+/* Opt out: <ul class="plain"> gives a normal text list */
+
+#app ul.plain,
+#app ol.plain {
+   display: block;
+   list-style: disc;
+   padding-left: 1.5rem;
+}
+
+#app ul.plain > li,
+#app ol.plain > li {
+   display: list-item;
+   padding: 0.15rem 0;
+   background: none;
+   border: none;
+}
+
+#app ul.plain > li::before,
+#app ol.plain > li::before {
+   display: none;
+}
+
+/* Definition lists (e.g. opening hours) */
+
+#app dl {
+   display: grid;
+   grid-template-columns: max-content 1fr;
+   gap: 0.6rem 1.5rem;
+   margin: 0 0 1.5rem;
+}
+
+#app dt {
+   font-weight: 600;
+   color: var(--accent-dark);
+}
+
+#app dd {
+   margin: 0;
+}
+
+/* Tables (e.g. tarieven) */
+
+#app table {
+   width: 100%;
+   border-collapse: collapse;
+   margin: 0 0 1.5rem;
+   background: var(--surface);
+   border-radius: 0.75rem;
+   overflow: hidden;
+   box-shadow: 0 0 0 1px var(--border);
+}
+
+#app th {
+   text-align: left;
+   background: var(--pink-soft);
+   color: var(--accent-dark);
+}
+
+#app th,
+#app td {
+   padding: 0.85rem 1rem;
+}
+
+#app tbody tr:nth-child(even) {
+   background: var(--bg);
+}
+
+/* Sidebar box */
+
+.sidebar-box {
+   background: var(--pink-soft);
+   border: 1px solid var(--pink-mid);
+   border-radius: var(--radius);
+   padding: 1.75rem;
+   box-shadow: var(--shadow);
+}
+
+.sidebar-box h3 {
+   margin: 0 0 1rem;
+   font-size: 1.15rem;
+}
+
+.sidebar-box ul {
+   margin-bottom: 1.5rem;
+}
+
+.sidebar-box ul > li {
+   background: rgba(255, 255, 255, 0.7);
+   border-color: transparent;
+   font-size: 0.95rem;
+}
+
+.sidebar-box ul > li::before {
+   box-shadow: none;
 }
 
 /* Buttons */
@@ -204,16 +416,23 @@ a {
    display: inline-block;
    padding: 0.75rem 1.5rem;
    border-radius: 999px;
-   background: #0a7d5c;
+   background: var(--accent);
    color: #fff;
    font-weight: 600;
    font-size: 0.95rem;
+   text-decoration: none !important;
    transition: background 0.2s ease, transform 0.1s ease;
 }
 
 .btn:hover {
-   background: #08694c;
+   background: var(--accent-dark);
    transform: translateY(-1px);
+}
+
+.hero-buttons {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 0.75rem;
 }
 
 /* Embeds */
@@ -224,31 +443,29 @@ a {
 }
 
 .tiktok-embed {
-   background: #000;
+   background: var(--grey-soft);
 }
 
 .fb-embed {
    border: none;
    overflow: hidden;
    max-width: 100%;
+   border-radius: 0.75rem;
 }
 
 /* Reviews */
 
 .reviews-list {
-   list-style: none;
-   padding: 0;
    margin: 1.5rem 0 0;
-   display: flex;
-   flex-direction: column;
-   gap: 1rem;
 }
 
-.reviews-list li {
-   background: #ffffff;
-   border: 1px solid #eaeaea;
-   border-radius: 0.75rem;
-   padding: 1.25rem;
+#app .reviews-list > li {
+   padding: 1.25rem 1.5rem;
+   border-left: 5px solid var(--pink-mid);
+}
+
+#app .reviews-list > li::before {
+   display: none;
 }
 
 /* Footer */
@@ -257,8 +474,9 @@ a {
    padding: 1.5rem 2rem;
    text-align: center;
    font-size: 0.9rem;
-   color: #999;
-   border-top: 1px solid #eaeaea;
+   color: var(--muted);
+   background: var(--grey-soft);
+   border-top: 1px solid var(--border);
    margin-top: 2rem;
 }
 
@@ -271,5 +489,16 @@ a {
 
    #app {
       padding: 2rem 1.25rem;
+   }
+
+   .dropdown-menu {
+      position: static;
+      box-shadow: none;
+      margin-top: 0.5rem;
+   }
+
+   #app dl {
+      grid-template-columns: 1fr;
+      gap: 0.1rem;
    }
 }
