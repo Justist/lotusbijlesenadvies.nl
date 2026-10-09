@@ -1,24 +1,50 @@
 <!doctype html>
-<html lang="nl">
+<html lang="nl" class="has-js">
 <head>
-   <meta charset="utf-8">
-   <title>Lotus</title>
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link rel="stylesheet" href="styles.css">
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Online bijles, leercoaching, studievaardigheden en begeleiding bij NT2 en inburgering.">
+  <title>Lotus Bijles &amp; Advies</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="index.js" type="module"></script>
 </head>
 <body>
-<header class="site-header">
-   <a href='./index.html'><h1 id="Lotus">Lotus</h1></a>
-   <nav id="nav"></nav>
-</header>
+  <a class="skip-link" href="#app">Ga naar de inhoud</a>
 
-<main id="app"></main>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Lotus Bijles & Advies — home">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+        <path d="M32 52c-13-6-20-16-20-29 9 1 16 5 20 12 4-7 11-11 20-12 0 13-7 23-20 29Z"/>
+        <path d="M32 12c6 7 8 15 0 25-8-10-6-18 0-25Z"/>
+      </svg>
+      <span><strong>Lotus</strong><small>Bijles &amp; Advies</small></span>
+    </a>
 
-<footer class="site-footer">
-   &copy; 2026 Lotus
-</footer>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav">
+      <span class="menu-toggle-label">Menu</span>
+      <span class="menu-toggle-icon" aria-hidden="true"></span>
+    </button>
 
-<script src="index.js" type="module"></script>
+    <nav id="nav" class="site-nav" aria-label="Hoofdnavigatie"></nav>
+  </header>
+
+  <main id="app" tabindex="-1" aria-live="polite" aria-busy="true">
+    <div class="loading-state" role="status">Pagina laden…</div>
+  </main>
+
+  <template id="page-error-template">
+    <section class="empty-state">
+      <h1>Deze pagina kon niet worden geladen</h1>
+      <p>Controleer de internetverbinding of probeer het later opnieuw.</p>
+      <a class="btn" href="#home">Terug naar home</a>
+    </section>
+  </template>
+
+  <footer class="site-footer">
+    <p><strong>Lotus Bijles &amp; Advies</strong> — groei vanuit kracht en verbinding.</p>
+    <a href="#aanmelden">Plan een intakegesprek</a>
+  </footer>
+
+  <noscript>JavaScript is nodig om de pagina's van deze website te laden.</noscript>
 </body>
 </html>

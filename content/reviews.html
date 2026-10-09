@@ -1,16 +1,77 @@
-<section class="section reviews-section">
-   <h2>Reviews</h2>
-   <ul class="reviews-list">
-      <li>
-         <strong>Jan</strong><br>
-         <span>Fantastische ervaring, ik voelde me meteen op mijn gemak.</span>
-      </li>
-      <li>
-         <strong>Sara</strong><br>
-         <span>Zeer professioneel en vriendelijk. Aanrader!</span>
-      </li>
-   </ul>
-   <p style="margin-top:1rem; font-size:0.9rem; color:#ccc;">
-      (Pas deze reviews aan door dit bestand <code>content/reviews.html</code> te bewerken.)
-   </p>
-</section>
+<article class="page-shell">
+  <header class="prose">
+    <p class="eyebrow">Ervaringen</p>
+    <h1>Reviews</h1>
+    <p class="lead">Deel jouw ervaring met Lotus Bijles &amp; Advies. De review wordt eerst per e-mail ontvangen en kan daarna worden beoordeeld voor plaatsing.</p>
+  </header>
+
+  <section class="callout" aria-labelledby="reviews-binnenkort">
+    <h2 id="reviews-binnenkort">Reviews volgen binnenkort</h2>
+    <p>Er zijn nog geen gepubliceerde reviews.</p>
+  </section>
+
+  <section class="review-form-panel" aria-labelledby="review-plaatsen">
+    <div class="section-heading">
+      <p class="eyebrow">Jouw ervaring</p>
+      <h2 id="review-plaatsen">Een review insturen</h2>
+      <p>Velden met een * zijn verplicht. Jouw e-mailadres wordt alleen gebruikt om zo nodig contact over de review op te nemen en wordt niet gepubliceerd.</p>
+    </div>
+
+    <form class="review-form" data-email-form method="post">
+      <input type="hidden" name="_subject" value="Nieuwe review via de website">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <div class="honeypot" aria-hidden="true">
+        <label for="review-website">Laat dit veld leeg</label>
+        <input id="review-website" name="_honey" type="text" tabindex="-1" autocomplete="off">
+      </div>
+
+      <div class="form-grid">
+        <div class="form-field">
+          <label for="review-name">Naam of schermnaam *</label>
+          <input id="review-name" name="Naam" type="text" autocomplete="name" maxlength="80" required>
+        </div>
+        <div class="form-field">
+          <label for="review-email">E-mailadres *</label>
+          <input id="review-email" name="email" type="email" autocomplete="email" maxlength="160" required>
+        </div>
+        <div class="form-field">
+          <label for="review-role">Ik ben… *</label>
+          <select id="review-role" name="Rol" required>
+            <option value="">Maak een keuze</option>
+            <option>Leerling of student</option>
+            <option>Ouder of verzorger</option>
+            <option>NT2-cursist</option>
+            <option>Anders</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="review-rating">Beoordeling *</label>
+          <select id="review-rating" name="Beoordeling" required>
+            <option value="">Maak een keuze</option>
+            <option value="5 van 5">5 — uitstekend</option>
+            <option value="4 van 5">4 — goed</option>
+            <option value="3 van 5">3 — voldoende</option>
+            <option value="2 van 5">2 — matig</option>
+            <option value="1 van 5">1 — onvoldoende</option>
+          </select>
+        </div>
+        <div class="form-field form-field-wide">
+          <label for="review-text">Jouw review *</label>
+          <textarea id="review-text" name="Review" rows="7" minlength="20" maxlength="1500" aria-describedby="review-hint" required></textarea>
+          <small id="review-hint">Schrijf minimaal 20 en maximaal 1.500 tekens.</small>
+        </div>
+      </div>
+
+      <label class="consent-field">
+        <input name="Toestemming" type="checkbox" value="Ja" required>
+        <span>Ik geef toestemming om mijn review en opgegeven naam of schermnaam op deze website te publiceren. *</span>
+      </label>
+
+      <div class="form-actions">
+        <button class="btn" type="submit">Review versturen</button>
+        <p class="form-status" role="status" aria-live="polite"></p>
+      </div>
+    </form>
+  </section>
+</article>
