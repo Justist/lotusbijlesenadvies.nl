@@ -248,6 +248,21 @@ function initExternalMedia() {
    }
 }
 
+function initContactLinks() {
+   app.querySelectorAll("[data-email-link]").forEach(link => {
+      const {subject} = link.dataset;
+      const mailto = `mailto:${ SITE_CONFIG.contactEmail }`;
+
+      link.href = subject
+                  ? `${ mailto }?subject=${ encodeURIComponent(subject) }`
+                  : mailto;
+
+      if (link.hasAttribute("data-email-address")) {
+         link.textContent = SITE_CONFIG.contactEmail;
+      }
+   });
+}
+
 function initEmailForms() {
    app.querySelectorAll("[data-email-form]").forEach(form => {
       form.action =
@@ -316,7 +331,9 @@ async function renderRoute() {
       renderedRouteId = route.dataset.route;
       const heading = app.querySelector("h1");
       document.title = heading ? `${ heading.textContent.trim() } | ${ siteTitle }` : siteTitle;
+
       initPageIndex(route.dataset.route);
+      initContactLinks();
       initEmailForms();
       initExternalMedia();
       scrollToLocationTarget();

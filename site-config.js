@@ -3,7 +3,8 @@
  * Pas hier de navigatie en het e-mailadres voor reviews aan.
  */
 export const SITE_CONFIG = {
-   reviewRecipient          : "ontvanger@voorbeeld.nl",
+   contactEmail             : "lotus.hanoeman@gmail.com",
+   reviewRecipient          : "lotus.hanoeman@gmail.com",
    pageIndexMinimumHeadings : 4,
    navigation               : [
       {
